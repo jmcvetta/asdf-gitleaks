@@ -73,9 +73,10 @@ install_version() {
   fi
 
   # FIXME: Remove this DEBUG output
-  echo install_path
+  echo ls -l install_path
   ls -l $install_path
-  echo ASDF_DOWNLOAD_PATH
+  echo "ASDF_DOWNLOAD_PATH=$ASDF_DOWNLOAD_PATH"
+  echo ls -l ASDF_DOWNLOAD_PATH
   ls -l $ASDF_DOWNLOAD_PATH
 
   (
