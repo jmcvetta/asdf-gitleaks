@@ -85,7 +85,7 @@ install_version() {
 
   (
     mkdir -p "$install_path"
-    cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+    cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path/bin"
 
 
     # FIXME: Remove this DEBUG output
