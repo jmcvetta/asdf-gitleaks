@@ -66,6 +66,12 @@ install_version() {
     fail "asdf-$TOOL_NAME supports release installs only"
   fi
 
+  # FIXME: Remove this DEBUG output
+  echo install_path
+  ls -l $install_path
+  echo ASDF_DOWNLOAD_PATH
+  ls -l $ASDF_DOWNLOAD_PATH
+
   (
     mkdir -p "$install_path"
     cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
