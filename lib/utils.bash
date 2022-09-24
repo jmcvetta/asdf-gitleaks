@@ -55,6 +55,12 @@ download_release() {
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+
+  # FIXME: remove this DEBUG output
+  echo url
+  echo $url
+  echo filename
+  echo $filename
 }
 
 install_version() {
