@@ -60,7 +60,7 @@ download_release() {
 install_version() {
   local install_type="$1"
   local version="$2"
-  local install_path="${3%/bin}/bin"
+  local install_path="$3"
 
   if [ "$install_type" != "version" ]; then
     fail "asdf-$TOOL_NAME supports release installs only"
