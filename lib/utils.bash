@@ -55,13 +55,6 @@ download_release() {
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
-
-  # FIXME: remove this DEBUG output
-  echo
-  echo "url=$url"
-  echo
-  echo "filename=$filename"
-  echo
 }
 
 install_version() {
@@ -73,24 +66,10 @@ install_version() {
     fail "asdf-$TOOL_NAME supports release installs only"
   fi
 
-  # FIXME: Remove this DEBUG output
-  echo
-  echo "install_path=$install_path"
-  echo
-  echo ls -l install_path
-  ls -l $install_path
-  echo
-  echo "ASDF_DOWNLOAD_PATH=$ASDF_DOWNLOAD_PATH"
-  echo
-  echo ls -l ASDF_DOWNLOAD_PATH
-  ls -l $ASDF_DOWNLOAD_PATH
-  echo
-
   (
     mkdir -p "$install_path"
     cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
-    # TODO: Assert gitleaks executable exists.
     local tool_cmd
     tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
     test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
