@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for gitleaks.
 GH_REPO="https://github.com/zricethezav/gitleaks"
 TOOL_NAME="gitleaks"
 TOOL_TEST="gitleaks --help"
@@ -31,7 +30,6 @@ list_github_tags() {
 }
 
 list_all_versions() {
-  # TODO: Adapt this. By default we simply list the tag names from GitHub releases.
   # Change this function if gitleaks has other means of determining installable versions.
   list_github_tags
 }
@@ -41,8 +39,19 @@ download_release() {
   version="$1"
   filename="$2"
 
-  # TODO: Adapt the release URL convention for gitleaks
-  url="$GH_REPO/archive/v${version}.tar.gz"
+  local os arch
+  case "$OSTYPE" in
+  darwin*) os="darwin" ;;
+  linux*) os="linux" ;;
+  *) exit 1 ;;
+  esac
+  case $(uname -m) in
+  x86_64) arch="x64" ;;
+  arm*) arch="arm64" ;;
+  esac
+
+  # https://github.com/zricethezav/gitleaks/releases/download/v8.13.0/gitleaks_8.13.0_linux_x64.tar.gz
+  url="$GH_REPO/releases/download/v${version}/gitleaks_${version}_${os}_${arch}.tar.gz"
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
