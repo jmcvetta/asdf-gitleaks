@@ -73,12 +73,8 @@ install_version() {
     fail "asdf-$TOOL_NAME supports release installs only"
   fi
 
+
   # FIXME: Remove this DEBUG output
-  echo
-  echo "install_path=$install_path"
-  echo
-  echo ls -l install_path
-  ls -l $install_path
   echo
   echo "ASDF_DOWNLOAD_PATH=$ASDF_DOWNLOAD_PATH"
   echo
@@ -86,9 +82,20 @@ install_version() {
   ls -l $ASDF_DOWNLOAD_PATH
   echo
 
+
   (
     mkdir -p "$install_path"
     cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+
+
+    # FIXME: Remove this DEBUG output
+    echo
+    echo "install_path=$install_path"
+    echo
+    echo ls -l install_path
+    ls -l $install_path
+    echo
+
 
     # TODO: Assert gitleaks executable exists.
     local tool_cmd
