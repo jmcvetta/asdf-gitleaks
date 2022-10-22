@@ -41,13 +41,23 @@ download_release() {
 
   local os arch
   case "$OSTYPE" in
-  darwin*) os="darwin" ;;
-  linux*) os="linux" ;;
-  *) exit 1 ;;
+  darwin*)
+    os="darwin"
+    ;;
+  linux*)
+    os="linux"
+    ;;
+  *)
+    exit 1
+    ;;
   esac
   case $(uname -m) in
-  x86_64) arch="x64" ;;
-  arm*) arch="arm64" ;;
+  x86_64)
+    arch="x64"
+    ;;
+  arm*)
+    arch="arm64"
+    ;;
   esac
 
   # https://github.com/zricethezav/gitleaks/releases/download/v8.13.0/gitleaks_8.13.0_linux_x64.tar.gz
