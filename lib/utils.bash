@@ -55,6 +55,9 @@ download_release() {
   x86_64)
     arch="x64"
     ;;
+  aarch64)
+    arch="arm64"
+    ;;
   arm*)
     arch="arm64"
     ;;
